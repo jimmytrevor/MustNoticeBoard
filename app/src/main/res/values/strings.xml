@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Must Notice Board</string>
+    <string name="launcher_text">Get News Here</string>
+    <string name="launcher_header">University Notice Board App</string>
+    <string name="email_hint">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="btnLoginText">Login</string>
+    <string name="registerText">Register Here</string>
+    <string name="dontHaveAccount">Need An Account?</string>
+    <string name="dialog_label">Create New Account</string>
+    <string name="dialog_email_hint">Enter Email Address</string>
+    <string name="dialog_password_hint">Enter Password</string>
+    <string name="dialog_confirm_hint">Confirm Paasowrd</string>
+    <string name="dialog_resiter_btn">Register</string>
+    <string name="dialog_cancel_btn">Close</string>\
+    <string name="dialog_terms">Accept the terms and conditions</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+</resources>

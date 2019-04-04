@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#A8BFF5"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:text="@string/dialog_label"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:background="@android:color/white"
+        android:textSize="18dp"
+        android:textColor="#0C117C"
+        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="0dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="26dp" />
+
+    <EditText
+        android:id="@+id/registerEmail"
+        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/dialog_field_design"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:drawableLeft="@drawable/email_icon"
+        android:hint="@string/dialog_email_hint"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="75dp" />
+
+    <EditText
+        android:id="@+id/registerPassword"
+        android:layout_height="45dp"
+        android:background="@drawable/dialog_field_design"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:drawableLeft="@drawable/passsword_icon"
+        android:hint="@string/dialog_password_hint"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="133dp" />
+
+    <EditText
+        android:id="@+id/registerConfirm"
+        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:drawableLeft="@drawable/passsword_icon"
+        android:background="@drawable/dialog_field_design"
+        android:hint="@string/dialog_confirm_hint"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="194dp" />
+
+
+
+    <CheckBox
+        android:id="@+id/registerTerms"
+        android:text="@string/dialog_terms"
+        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:textSize="17dp"
+        android:background="@drawable/dialog_field_design"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="258dp" />
+
+    <LinearLayout
+        android:layout_height="95dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_btn_register_design"
+        android:text="@string/dialog_resiter_btn"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="353dp" />
+
+    </LinearLayout>
+</LinearLayout>
