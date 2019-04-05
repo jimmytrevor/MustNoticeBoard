@@ -4,34 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view"
     >
-
+    <group android:checkableBehavior="single" >
+    <item android:title="Home"
+        android:id="@+id/home"
+        android:icon="@drawable/home_icon"
+        />
     <item android:title="Account"
         android:id="@+id/account"
         android:icon="@drawable/account_icon"
         />
     <item
-        android:title="Setting"
+        android:title="App Settings"
         android:id="@+id/setting"
         android:icon="@drawable/setting_icon"
         />
-    <item android:title="Chats"
+    <item android:title="Find Freinds"
         android:id="@+id/chat"
         android:icon="@drawable/chat_icon"
         />
-    <item android:title="Share"
-        android:id="@+id/share"
-        android:icon="@drawable/share_icon"
-        />
-    <item android:title="Help"
+    <item android:title="Help Line"
         android:id="@+id/help"
         android:icon="@drawable/help_icon"
         />
+    <item android:title="Share The App"
+        android:id="@+id/share"
+        app:showAsAction="never"
+        android:icon="@drawable/share_icon"
+        />
     <item android:title="About App"
         android:id="@+id/about"
-        android:icon="@drawable/about_app"/>
-    <item android:title="Privacy"
+        android:icon="@drawable/about_app"
+        />
+    <item android:title="Privacy Notes"
         android:id="@+id/privacy"
         android:icon="@drawable/privacy_icon"/>
-
-
+    </group>
 </menu>

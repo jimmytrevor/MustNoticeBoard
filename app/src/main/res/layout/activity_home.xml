@@ -8,9 +8,19 @@
     android:id="@+id/drawer"
     tools:context=".HomeActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/drawable_nav"
+        app:headerLayout="@layout/drawer_header"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:menu="@menu/home_menu_items"
