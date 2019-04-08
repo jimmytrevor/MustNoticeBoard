@@ -99,4 +99,24 @@ public class HomeActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,fragemt).commit();
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.addpost_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.addPost:
+
+                startActivity(new Intent(getApplicationContext(),AddPostActivity.class));
+                return true;
+                default:
+
+                    return super.onOptionsItemSelected(item);
+        }
+
+    }
 }

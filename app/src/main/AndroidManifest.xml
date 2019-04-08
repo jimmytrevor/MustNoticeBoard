@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddPostActivity"></activity>
+        <activity android:name=".AddPostActivity"
+            android:label="Add new post"
+            android:parentActivityName=".HomeActivity"
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".HomeActivity"
             android:label="Notice Board View"
