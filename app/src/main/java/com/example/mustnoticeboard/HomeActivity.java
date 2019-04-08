@@ -87,10 +87,6 @@ public class HomeActivity extends AppCompatActivity {
                       });
                       AlertDialog alert= alertLogout.create();
                       alert.show();
-
-
-
-
                        return true;
                        default:
                            return false;
