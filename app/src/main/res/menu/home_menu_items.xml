@@ -39,4 +39,8 @@
         android:id="@+id/privacy"
         android:icon="@drawable/privacy_icon"/>
     </group>
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/logout"/>
 </menu>
