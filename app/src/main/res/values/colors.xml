@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#2D86AD</color>
     <color name="colorPrimaryDark">#2D86AD</color>
-    <color name="colorAccent">#2D86AD</color>
+    <color name="colorAccent">#E91E63</color>
     <color name="btn_register_color">#0C680A</color>
     <color name="dialog_btn_close">#E70B6B</color>
 </resources>

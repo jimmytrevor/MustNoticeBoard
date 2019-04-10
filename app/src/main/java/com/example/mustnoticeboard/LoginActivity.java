@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             progressDialog.setCancelable(false);
             progressDialog.setMessage("Checking For User Credential Validity.......");
             progressDialog.show();
-            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+            startActivity(new Intent(getApplicationContext(),NoticeBoardActivity.class));
             LoginActivity.this.finish();
         }
     }

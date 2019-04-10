@@ -12,15 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddPostActivity"
-            android:label="Add new post"
-            android:parentActivityName=".HomeActivity"
+        <activity android:name=".NoticeBoardActivity"
             android:screenOrientation="portrait"
+            android:label="Notice Board Dashboard"
             ></activity>
         <activity
+            android:name=".AddPostActivity"
+            android:label="Add new post"
+            android:parentActivityName=".NoticeBoardActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".HomeActivity"
-            android:label="Notice Board View"
-            android:screenOrientation="portrait"></activity>
+            android:label="User Settings"
+
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
