@@ -10,8 +10,8 @@
         android:id="@+id/aboutlist"
         android:layout_width="300dp"
         android:layout_height="333dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="200dp"
         android:textAlignment="center" />
 
