@@ -45,8 +45,6 @@ public class HomeActivity extends AppCompatActivity {
                switch (click){
                    case R.id.account:
                        return true;
-                   case R.id.setting:
-                       return true;
                    case R.id.chat:
                        return true;
                    case R.id.help:

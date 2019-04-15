@@ -22,6 +22,6 @@
         android:layout_height="match_parent"
         app:menu="@menu/home_menu_items"
         app:itemIconTint="@android:color/holo_red_light"
-        android:layout_gravity=""
+        android:layout_gravity="start"
         />
 </android.support.v4.widget.DrawerLayout>

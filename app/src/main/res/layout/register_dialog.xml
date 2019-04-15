@@ -87,6 +87,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/dialog_btn_register_design"
         android:text="@string/dialog_resiter_btn"
+        android:onClick="registerUser"
         android:textColor="@android:color/white"
         android:layout_marginTop="20dp"
         android:textStyle="bold"
