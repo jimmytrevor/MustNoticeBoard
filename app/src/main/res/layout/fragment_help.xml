@@ -5,9 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".HelpFragment">
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <Button
+
+        android:layout_margin="50dp"
+        android:text="SEND AN EMAIL"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:id="@+id/emailButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Help Fragment" />
+        android:layout_height="wrap_content" />
+
 
 </FrameLayout>

@@ -36,16 +36,13 @@ public class HomeActivity extends AppCompatActivity {
        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
        //setting default fragment on Activity creation
-        setFragemt(new HomeFragment());
+
         //setting an onclick listener on the navigation view
        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
            @Override
            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                int click=menuItem.getItemId();
                switch (click){
-                   case R.id.home:
-                       setFragemt(new HomeFragment());
-                       return true;
                    case R.id.account:
                        return true;
                    case R.id.setting:
@@ -71,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
                       final AlertDialog.Builder alertLogout=new AlertDialog.Builder(HomeActivity.this);
                       alertLogout.setTitle("Must Computing Service Unit");
                       alertLogout.setCancelable(false);
-                      alertLogout.setMessage("Confirm tha you want to logout");
+                      alertLogout.setMessage("Confirm that you want to logout");
                       alertLogout.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                           @Override
                           public void onClick(DialogInterface dialog, int which) {

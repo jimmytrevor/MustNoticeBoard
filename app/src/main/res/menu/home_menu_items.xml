@@ -5,10 +5,7 @@
     tools:showIn="navigation_view"
     >
     <group android:checkableBehavior="single" >
-    <item android:title="Home"
-        android:id="@+id/home"
-        android:icon="@drawable/home_icon"
-        />
+
     <item android:title="Account"
         android:id="@+id/account"
         android:icon="@drawable/account_icon"
