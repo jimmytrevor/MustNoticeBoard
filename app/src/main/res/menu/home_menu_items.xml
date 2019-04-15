@@ -10,11 +10,6 @@
         android:id="@+id/account"
         android:icon="@drawable/account_icon"
         />
-    <item
-        android:title="App Settings"
-        android:id="@+id/setting"
-        android:icon="@drawable/setting_icon"
-        />
     <item android:title="Find Freinds"
         android:id="@+id/chat"
         android:icon="@drawable/chat_icon"
