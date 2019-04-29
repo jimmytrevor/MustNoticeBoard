@@ -24,6 +24,48 @@
         tools:layout_editor_absoluteY="26dp" />
 
     <EditText
+        android:id="@+id/fullname"
+        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/dialog_field_design"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:drawableLeft="@drawable/user"
+        android:hint="@string/fullnameHint"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="75dp" />
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+    <EditText
+        android:id="@+id/course"
+        android:layout_height="45dp"
+        android:layout_width="200dp"
+        android:background="@drawable/dialog_field_design"
+        android:ems="10"
+        android:drawableLeft="@drawable/course"
+        android:hint="@string/course_hint"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="75dp" />
+
+        <EditText
+            android:id="@+id/year"
+            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/dialog_field_design"
+            android:ems="10"
+            android:drawableLeft="@drawable/time"
+            android:hint="@string/year_of_study"
+            android:inputType="number"
+            tools:layout_editor_absoluteX="43dp"
+            tools:layout_editor_absoluteY="75dp" />
+
+    </LinearLayout>
+    <EditText
         android:id="@+id/registerEmail"
         android:layout_height="45dp"
         android:layout_width="match_parent"
@@ -81,18 +123,19 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:orientation="horizontal">
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dialog_btn_register_design"
-        android:text="@string/dialog_resiter_btn"
-        android:onClick="registerUser"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="353dp" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/dialog_btn_register_design"
+            android:onClick="registerUser"
+            android:text="@string/dialog_resiter_btn"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="353dp" />
 
     </LinearLayout>
 </LinearLayout>

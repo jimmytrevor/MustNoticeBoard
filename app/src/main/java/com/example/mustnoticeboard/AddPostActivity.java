@@ -13,8 +13,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -30,6 +33,7 @@ private ImageView mImage;
 private static final int REQUEST_CODE_IMAGE=1;
 private Uri imageUri;
 private EditText title,desc;
+public String downloadUri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +53,7 @@ private EditText title,desc;
 
 //        Instanctaite firebase references
         storageReference= FirebaseStorage.getInstance().getReference();
-        databaseReference= FirebaseDatabase.getInstance().getReference();
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Posts");
 
     }
 //the method that picks an image from the file chooser
@@ -80,19 +84,52 @@ private EditText title,desc;
             showMeProgess.setMessage("DATA SAVING");
             showMeProgess.setCancelable(false);
             showMeProgess.show();
-            StorageReference filepath=storageReference.child("post_image").child(imageUri.getLastPathSegment());
+            final StorageReference filepath=storageReference.child("post_image").child(imageUri.getLastPathSegment());
+final UploadTask uploadTask=filepath.putFile(imageUri);
 
-            filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     showMeProgess.dismiss();
+                    final DatabaseReference db=databaseReference.push();
+                    final Task<Uri> down=taskSnapshot.getMetadata().getReference().getDownloadUrl();
+//                    Adding the text to the database
+                    Task<Uri> task=uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+
+                            if (!task.isSuccessful()){
+                                throw task.getException();
+                            }
+                            downloadUri=filepath.getDownloadUrl().toString();
+                            return filepath.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()){
+
+                                db.child("title").setValue(title.getText().toString().trim());
+                                db.child("description").setValue(desc.getText().toString().trim());
+                                db.child("image").setValue(down.toString().trim());
+                                Toast.makeText(getApplicationContext(),"Post Added successfully to the database",Toast.LENGTH_LONG).show();
+
+                            }
+                            else {
+                                Toast.makeText(getApplicationContext(),"Failed to add the user to database",Toast.LENGTH_LONG).show();
+                            }
+
+
+                        }
+                    });
+
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     showMeProgess.dismiss();
-                    Toast.makeText(AddPostActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(AddPostActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -104,9 +141,5 @@ private EditText title,desc;
 
 
         }
-
-
-
-
     }
 }

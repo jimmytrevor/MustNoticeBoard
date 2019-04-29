@@ -20,16 +20,22 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private EditText user_email,mail,confirm,pass;
+    private EditText user_email,mail,confirm,pass,user,course,year;
     private CheckBox terms;
     private  EditText user_password;
         private ProgressDialog progressDialog,registerProgress;
+        private DatabaseReference mref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         //hidong the action bar on the main activity
         getSupportActionBar().hide();
 mAuth=FirebaseAuth.getInstance();
+mref = FirebaseDatabase.getInstance().getReference().child("users");
 
         user_email=findViewById(R.id.userEmail);
         user_password=findViewById(R.id.userPassword);
@@ -46,7 +53,6 @@ mAuth=FirebaseAuth.getInstance();
     }
 //The login method
     public void loginUserWithCredentials(View view) {
-
         setLogin(user_email.getText().toString(),user_password.getText().toString());
 
 
@@ -56,6 +62,9 @@ mAuth=FirebaseAuth.getInstance();
         final AlertDialog.Builder registerDialog=new AlertDialog.Builder(this);
         View registerView=getLayoutInflater().inflate(R.layout.register_dialog,null);
         registerDialog.setCancelable(false);
+        year=(EditText)registerView.findViewById(R.id.year);
+        user=(EditText)registerView.findViewById(R.id.fullname);
+        course=(EditText)registerView.findViewById(R.id.course);
          mail=(EditText)registerView.findViewById(R.id.registerEmail);
          pass=(EditText)registerView.findViewById(R.id.registerPassword);
          confirm=(EditText)registerView.findViewById(R.id.registerConfirm);
@@ -96,9 +105,11 @@ mAuth=FirebaseAuth.getInstance();
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
+                        checkUserData();
                         progressDialog.dismiss();
-                        startActivity(new Intent(getApplicationContext(),NoticeBoardActivity.class));
-                        LoginActivity.this.finish();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"You need to create an account",Toast.LENGTH_LONG).show();
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -111,11 +122,34 @@ mAuth=FirebaseAuth.getInstance();
         }
     }
 
+    public void checkUserData(){
+        final String user_id=mAuth.getCurrentUser().getUid();
+        mref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(user_id)){
+                    startActivity(new Intent(getApplicationContext(),NoticeBoardActivity.class));
+                    LoginActivity.this.finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(),databaseError.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     public void registerUser(View view) {
         String m = mail.getText().toString().trim();
         String p = pass.getText().toString().trim();
         String c = confirm.getText().toString();
-        if (TextUtils.isEmpty(m) || TextUtils.isEmpty(p) || TextUtils.isEmpty(c)){
+        final  String n=user.getText().toString().trim();
+        final String co=course.getText().toString().trim();
+        final   String y=year.getText().toString().trim();
+        final String f=co+" "+y;
+
+        if (TextUtils.isEmpty(m) || TextUtils.isEmpty(p) || TextUtils.isEmpty(c) || TextUtils.isEmpty(n) || TextUtils.isEmpty(co)|| TextUtils.isEmpty(y) ){
             Toast.makeText(this, "Check out some fields are empty", Toast.LENGTH_SHORT).show();
         }
         else if (p.length()<8 || p.length()>10){
@@ -139,18 +173,25 @@ mAuth=FirebaseAuth.getInstance();
                    @Override
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if (task.isSuccessful()){
+                           String user_id=mAuth.getCurrentUser().getUid();
+                           DatabaseReference current_user=mref.child(user_id);
+                           current_user.child("Full_Name").setValue(n);
+                           current_user.child("Program").setValue(f);
                            registerProgress.dismiss();
                            Toast.makeText(LoginActivity.this, "User Information added successfully", Toast.LENGTH_SHORT).show();
                            mail.setText("");
                            pass.setText("");
                            confirm.setText("");
+                           user.setText("");
+                           course.setText("");
+                           year.setText("");
                            terms.setSelected(false);
                        }
                    }
                }).addOnFailureListener(new OnFailureListener() {
                    @Override
                    public void onFailure(@NonNull Exception e) {
-                       Toast.makeText(LoginActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                       Toast.makeText(LoginActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_LONG).show();
                        registerProgress.cancel();
                    }
                });

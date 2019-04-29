@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.TextView;
 
 public class NoticeBoardActivity extends AppCompatActivity {
@@ -49,7 +50,15 @@ recyclerView.setLayoutManager(new LinearLayoutManager(this));
     protected void onStart() {
 
         super.onStart();
+
+
+
+
     }
+
+    public void addNewPost(View view) {
+    }
+
 
     public static final class NewViewHolder extends RecyclerView.ViewHolder{
 
