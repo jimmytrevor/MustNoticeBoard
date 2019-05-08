@@ -54,8 +54,9 @@ public class HomeActivity extends AppCompatActivity {
                        Intent intent=new Intent(Intent.ACTION_SEND);
                        intent.setType("text/plain");
                        intent.putExtra("MY APP",true);
+
                        startActivity(Intent.createChooser(intent,"SHARE THE APP NOW"));
-                       Toast.makeText(getApplicationContext(),"share",Toast.LENGTH_SHORT).show();
+                       Toast.makeText(getApplicationContext(),"sharing the app",Toast.LENGTH_SHORT).show();
                        return true;
                    case R.id.about:
                        setFragemt(new AboutFragment());

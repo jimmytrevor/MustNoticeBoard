@@ -1,3 +1,4 @@
+package com.example.mustnoticeboard;
 
 public class BoardSetting {
 

@@ -3,6 +3,10 @@ package com.example.mustnoticeboard;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.os.BatteryManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,7 +33,8 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
-
+    MyInternetConnection myInternetConnection;
+    BatteryTest batteryTest;
     private FirebaseAuth mAuth;
     private EditText user_email,mail,confirm,pass,user,course,year;
     private CheckBox terms;
@@ -43,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         //hidong the action bar on the main activity
         getSupportActionBar().hide();
+        batteryTest= new BatteryTest();
+        myInternetConnection=new MyInternetConnection();
 mAuth=FirebaseAuth.getInstance();
 mref = FirebaseDatabase.getInstance().getReference().child("users");
 
@@ -197,4 +204,21 @@ mref = FirebaseDatabase.getInstance().getReference().child("users");
                });
         }
 
-    }}
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerReceiver(myInternetConnection,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        registerReceiver(batteryTest,new IntentFilter(BatteryManager.ACTION_CHARGING));
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(myInternetConnection);
+        unregisterReceiver(batteryTest);
+    }
+
+}

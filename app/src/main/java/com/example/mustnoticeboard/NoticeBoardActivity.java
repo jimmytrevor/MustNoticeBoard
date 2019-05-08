@@ -1,6 +1,8 @@
 package com.example.mustnoticeboard;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class NoticeBoardActivity extends AppCompatActivity {
 private RecyclerView recyclerView;
+MyInternetConnection myInternetConnection;
 private DatabaseReference md;
 FirebaseRecyclerOptions<PostUpload> firebaseRecyclerOptions;
 FirebaseRecyclerAdapter<PostUpload ,NewViewHolder> firebaseRecyclerAdapter;
@@ -29,7 +32,7 @@ FirebaseRecyclerAdapter<PostUpload ,NewViewHolder> firebaseRecyclerAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice_board);
-
+myInternetConnection=new MyInternetConnection();
 recyclerView=findViewById(R.id.new_list);
 recyclerView.setHasFixedSize(true);
 recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -89,6 +92,7 @@ holder.setTitle(model.getTitle());
             firebaseRecyclerAdapter.stopListening();
 
         }
+      registerReceiver(myInternetConnection,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
@@ -101,6 +105,7 @@ holder.setTitle(model.getTitle());
     }
 
     public void addNewPost(View view) {
+
     }
 
 
@@ -124,5 +129,9 @@ holder.setTitle(model.getTitle());
     }
 
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(myInternetConnection);
+    }
 }
