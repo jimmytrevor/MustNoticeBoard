@@ -3,11 +3,11 @@
     package="com.example.mustnoticeboard">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
 
     <application
         android:allowBackup="true"
@@ -16,10 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NoticeBoardActivity"
-            android:screenOrientation="portrait"
+        <activity android:name=".RecordEventActivity"></activity>
+        <activity android:name=".ViewEventActivity" />
+        <activity
+            android:name=".NoticeBoardActivity"
             android:label="Notice Board Dashboard"
-            ></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddPostActivity"
             android:label="Add new post"
@@ -28,7 +30,6 @@
         <activity
             android:name=".HomeActivity"
             android:label="User Settings"
-
             android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
@@ -38,6 +39,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -50,13 +52,12 @@
         </receiver>
         <receiver android:name=".MyInternetConnection">
             <intent-filter>
-
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
         <receiver android:name=".BatteryTest">
             <intent-filter>
-                <action android:name="android.intent.action.BATTERY_CHANGED"/>
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
             </intent-filter>
         </receiver>
     </application>

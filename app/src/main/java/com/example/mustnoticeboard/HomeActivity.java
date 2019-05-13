@@ -43,10 +43,6 @@ public class HomeActivity extends AppCompatActivity {
            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                int click=menuItem.getItemId();
                switch (click){
-                   case R.id.account:
-                       return true;
-                   case R.id.chat:
-                       return true;
                    case R.id.help:
                        setFragemt(new HelpFragment());
                        return true;
@@ -93,7 +89,5 @@ public class HomeActivity extends AppCompatActivity {
 
     public void setFragemt(Fragment fragemt){
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,fragemt).commit();
-
     }
-
 }

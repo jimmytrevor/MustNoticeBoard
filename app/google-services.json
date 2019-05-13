@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "333488740183",
+    "firebase_url": "https://mustnoticeboardapp.firebaseio.com",
+    "project_id": "mustnoticeboardapp",
+    "storage_bucket": "mustnoticeboardapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333488740183:android:c2b50b81c7ac1a43",
+        "android_client_info": {
+          "package_name": "com.example.mustnoticeboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333488740183-j0lh8ci9pfgoni01h97uh9eck7vgka7n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mustnoticeboard",
+            "certificate_hash": "24ce5013345bd79f3139803e5a5a47d3d529d032"
+          }
+        },
+        {
+          "client_id": "333488740183-j9cs7bhock4piblil3krk9d44a861bq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-HMmVjTCph_XaSHaAxJR3d5c0Cj_fbv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333488740183-j9cs7bhock4piblil3krk9d44a861bq7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,18 +2,8 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"
-    >
+    tools:showIn="navigation_view">
     <group android:checkableBehavior="single" >
-
-    <item android:title="Account"
-        android:id="@+id/account"
-        android:icon="@drawable/account_icon"
-        />
-    <item android:title="Find Freinds"
-        android:id="@+id/chat"
-        android:icon="@drawable/chat_icon"
-        />
     <item android:title="Help Line"
         android:id="@+id/help"
         android:icon="@drawable/help_icon"

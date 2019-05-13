@@ -1,10 +1,12 @@
 package com.example.mustnoticeboard;
 
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.os.BatteryManager;
 import android.support.annotation.NonNull;
@@ -35,6 +37,7 @@ import org.w3c.dom.Text;
 public class LoginActivity extends AppCompatActivity {
     MyInternetConnection myInternetConnection;
     BatteryTest batteryTest;
+    TestDatabaseHelper testDatabaseHelper;
     private FirebaseAuth mAuth;
     private EditText user_email,mail,confirm,pass,user,course,year;
     private CheckBox terms;
@@ -48,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         //hidong the action bar on the main activity
         getSupportActionBar().hide();
+        testDatabaseHelper=new TestDatabaseHelper(this);
         batteryTest= new BatteryTest();
         myInternetConnection=new MyInternetConnection();
 mAuth=FirebaseAuth.getInstance();
@@ -172,6 +176,7 @@ mref = FirebaseDatabase.getInstance().getReference().child("users");
             terms.setSelected(true);
         }
            else {
+               saveUserEmailAndPassword();
                registerProgress.setCancelable(false);
                registerProgress.setTitle("SIGNING UP");
                registerProgress.setMessage("Adding User to the database.......");
@@ -220,5 +225,29 @@ mref = FirebaseDatabase.getInstance().getReference().child("users");
         unregisterReceiver(myInternetConnection);
         unregisterReceiver(batteryTest);
     }
+    public void saveUserEmailAndPassword(){
 
+
+
+        boolean send=testDatabaseHelper.sendData(user.getText().toString(),mail.getText().toString(),pass.getText().toString());
+        if (send==true){
+            Toast.makeText(getApplicationContext(),"Login Credentials added successfully",Toast.LENGTH_LONG).show();
+
+
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"Registration failed please try again",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void testData(View view) {
+        Cursor x=testDatabaseHelper.getData();
+        while (x.moveToNext()){
+            String p=x.getString(1);
+            String q=x.getString(3);
+            String r=x.getString(2);
+            Toast.makeText(getApplicationContext(),"Name "+p+"\nPassword: "+q+"\nEmail:"+r,Toast.LENGTH_LONG).show();
+
+        }
+    }
 }
