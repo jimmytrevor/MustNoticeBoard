@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class NoticeBoardActivity extends AppCompatActivity {
-private RecyclerView recyclerView;
+//private RecyclerView recyclerView;
 MyInternetConnection myInternetConnection;
 private DatabaseReference md;
 FirebaseRecyclerOptions<PostUpload> firebaseRecyclerOptions;
@@ -33,9 +33,9 @@ FirebaseRecyclerAdapter<PostUpload ,NewViewHolder> firebaseRecyclerAdapter;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice_board);
 myInternetConnection=new MyInternetConnection();
-recyclerView=findViewById(R.id.new_list);
-recyclerView.setHasFixedSize(true);
-recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//recyclerView=findViewById(R.id.new_list);
+//recyclerView.setHasFixedSize(true);
+//recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 md= FirebaseDatabase.getInstance().getReference("posts");
 
@@ -59,7 +59,7 @@ holder.setTitle(model.getTitle());
 
         };
         firebaseRecyclerAdapter.startListening();
-        recyclerView.setAdapter(firebaseRecyclerAdapter);
+//        recyclerView.setAdapter(firebaseRecyclerAdapter);
 
     }
 

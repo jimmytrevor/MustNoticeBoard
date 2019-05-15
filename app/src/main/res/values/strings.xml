@@ -16,6 +16,8 @@
     <string name="dialog_terms">Accept the terms and conditions</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="contact">Tel: +256 774165087\nEmail: jimmytrevor@gmail.com\nWebsite: www.must.ac.ug</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

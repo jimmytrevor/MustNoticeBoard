@@ -32,6 +32,7 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(mToggle);//Adding A listener to the Drawer Layout
         //Syncing the Toggle Button
         mToggle.syncState();
+        setFragemt(new AboutFragment());
 
        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

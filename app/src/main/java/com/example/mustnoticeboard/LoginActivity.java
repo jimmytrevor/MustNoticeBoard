@@ -2,12 +2,14 @@ package com.example.mustnoticeboard;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.BatteryManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -107,6 +109,12 @@ mref = FirebaseDatabase.getInstance().getReference().child("users");
             user_password.setError("Password cannot be Empty");
         }
         else {
+            ConnectivityManager connectivityManager=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+
+            if(networkInfo !=null && networkInfo.isConnected()){
+
+
             //definig the progress dialog
             progressDialog.setTitle("USER LOGIN");
             progressDialog.setCancelable(false);
@@ -131,6 +139,18 @@ mref = FirebaseDatabase.getInstance().getReference().child("users");
                 }
             });
         }
+
+        else {
+            boolean data=testDatabaseHelper.getData(user_email.getText().toString(),user_password.getText().toString());
+            if (data==true){
+                startActivity(new Intent(getApplicationContext(),NoticeBoardActivity.class));
+                LoginActivity.this.finish();
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"Sorry You need to create account",Toast.LENGTH_LONG).show();
+            }
+
+        }}
     }
 
     public void checkUserData(){
@@ -176,39 +196,43 @@ mref = FirebaseDatabase.getInstance().getReference().child("users");
             terms.setSelected(true);
         }
            else {
-               saveUserEmailAndPassword();
-               registerProgress.setCancelable(false);
-               registerProgress.setTitle("SIGNING UP");
-               registerProgress.setMessage("Adding User to the database.......");
-               registerProgress.show();
-               mAuth.createUserWithEmailAndPassword(m,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                   @Override
-                   public void onComplete(@NonNull Task<AuthResult> task) {
-                       if (task.isSuccessful()){
-                           String user_id=mAuth.getCurrentUser().getUid();
-                           DatabaseReference current_user=mref.child(user_id);
-                           current_user.child("Full_Name").setValue(n);
-                           current_user.child("Program").setValue(f);
-                           registerProgress.dismiss();
-                           Toast.makeText(LoginActivity.this, "User Information added successfully", Toast.LENGTH_SHORT).show();
-                           mail.setText("");
-                           pass.setText("");
-                           confirm.setText("");
-                           user.setText("");
-                           course.setText("");
-                           year.setText("");
-                           terms.setSelected(false);
-                       }
-                   }
-               }).addOnFailureListener(new OnFailureListener() {
-                   @Override
-                   public void onFailure(@NonNull Exception e) {
-                       Toast.makeText(LoginActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_LONG).show();
-                       registerProgress.cancel();
-                   }
-               });
+            boolean getEmail = testDatabaseHelper.checkEmailExistance(mail.getText().toString());
+            if (getEmail == true) {
+                Toast.makeText(this, "It seems someone else if not you used this email to create account\nUse it to log into the application", Toast.LENGTH_SHORT).show();
+            } else {
+                saveUserEmailAndPassword();
+                registerProgress.setCancelable(false);
+                registerProgress.setTitle("SIGNING UP");
+                registerProgress.setMessage("Adding User to the database.......");
+                registerProgress.show();
+                mAuth.createUserWithEmailAndPassword(m, p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            String user_id = mAuth.getCurrentUser().getUid();
+                            DatabaseReference current_user = mref.child(user_id);
+                            current_user.child("Full_Name").setValue(n);
+                            current_user.child("Program").setValue(f);
+                            registerProgress.dismiss();
+                            Toast.makeText(LoginActivity.this, "User Information added successfully", Toast.LENGTH_SHORT).show();
+                            mail.setText("");
+                            pass.setText("");
+                            confirm.setText("");
+                            user.setText("");
+                            course.setText("");
+                            year.setText("");
+                            terms.setSelected(false);
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(LoginActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        registerProgress.cancel();
+                    }
+                });
+            }
         }
-
     }
 
     @Override
@@ -240,14 +264,4 @@ mref = FirebaseDatabase.getInstance().getReference().child("users");
         }
     }
 
-    public void testData(View view) {
-        Cursor x=testDatabaseHelper.getData();
-        while (x.moveToNext()){
-            String p=x.getString(1);
-            String q=x.getString(3);
-            String r=x.getString(2);
-            Toast.makeText(getApplicationContext(),"Name "+p+"\nPassword: "+q+"\nEmail:"+r,Toast.LENGTH_LONG).show();
-
-        }
-    }
 }

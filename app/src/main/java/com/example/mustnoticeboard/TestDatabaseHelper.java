@@ -46,12 +46,26 @@ db.execSQL("CREATE table users(id integer primary key autoincrement not null, NA
     else
         return true;
 
-
     }
-    public Cursor getData(){
+    public boolean getData(String email, String password){
         SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery("SELECT * from "+TABLE_NAME,null);
-        return cursor;
+        Cursor cursor=db.rawQuery("SELECT * from "+TABLE_NAME +" where EMAIL=? AND PASSWORD=?",new String[]{email,password});
+        if (cursor.getCount()>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public boolean checkEmailExistance(String email){
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor courso=db.rawQuery("SELECT EMAIL from "+TABLE_NAME +" where EMAIL =?",new String[]{email});
+        if (courso.getCount()>0){
+            return true;
+        }
+        else{
+          return false;
+        }
     }
 
 

@@ -1,14 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".NoticeBoardActivity">
 
-<android.support.v7.widget.RecyclerView
-android:id="@+id/new_list"
-android:layout_width="match_parent"
-android:layout_height="match_parent"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<!--<android.support.v7.widget.RecyclerView-->
+<!--android:id="@+id/new_list"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"/>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Posted News"
+            android:textAlignment="center"
+            android:paddingVertical="15dp"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_height="50dp" />
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/kl"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:text="News Item one  "
+            android:textAlignment="center"
+            android:paddingVertical="15dp"
+            android:textColor="@android:color/black"
+            android:layout_height="50dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/jes"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:text="News Item one  "
+            android:textAlignment="center"
+            android:paddingVertical="15dp"
+            android:textColor="@android:color/black"
+            android:layout_height="50dp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/kl"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:text="News Item one  "
+            android:textAlignment="center"
+            android:paddingVertical="15dp"
+            android:textColor="@android:color/black"
+            android:layout_height="50dp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/jk"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:text="News Item one  "
+            android:textAlignment="center"
+            android:paddingVertical="15dp"
+            android:textColor="@android:color/black"
+            android:layout_height="50dp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/ol"
+            android:scaleType="centerCrop"
+            />
+
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>
+
